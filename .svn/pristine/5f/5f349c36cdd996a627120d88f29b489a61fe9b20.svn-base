@@ -1,0 +1,178 @@
+@charset 'UTF-8';
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+body ,v_wrap{
+    margin:0;
+    padding:0;
+    font-family: "Nanum Gothic", sans-serif;
+}
+.view_header{
+	position: absolute;
+    background-color: #343a40!important;
+	width: 100%;
+    height:60px;
+    line-height: 60px;
+	box-shadow: 1px 1px 3px 1px #343a40!important;
+    overflow: hidden;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    color: #fff;
+}
+
+.logo{
+	float: left;
+    display: inline-block;
+    margin-left:10px;
+    width: 250px;
+    height: 60px;
+    background-image: url('/static/logo.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.view_main{
+	position: absolute;
+	top:63px;
+	left: 0;
+    float: left;
+    width: 70%;
+    width: 100%;
+    height: -webkit-calc(100% - 66px);
+    height: -moz-calc(100% - 66px);
+    height: calc(100% - 66px);
+	box-shadow: 1px 1px 3px 1px #afafaf;
+	overflow: hidden;
+}
+.button-circle{
+    float: right;
+    position: relative;
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px 1px #343a40;
+    font-size: 12px;
+    text-align: center;
+    color: #343a40;
+    cursor: pointer;
+    -webkit-transition: all ease 0.4s;
+    -moz-transition: all ease 0.4s;
+    -ms-transition: all ease 0.4s;
+    -o-transition: all ease 0.4s;
+    transition: all ease 0.4s;
+}
+.view_infobox{
+    position: absolute;
+    top:63px;
+    right: 0em;
+    width: 30em;
+    height: -webkit-calc(100% - 70px);
+    height: -moz-calc(100% - 70px);
+    height: calc(100% - 70px);
+    background-color: #343a40;
+    box-shadow: 0px 0px 3px 1px #343a40;
+    opacity: 0.9;
+    visibility: visible;
+    -webkit-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -ms-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    transition: all ease 1s;
+    overflow: hidden;
+
+    
+}
+.info-category{
+    position: absolute;
+    margin:0;
+    padding:0;
+    width: 100%;
+    padding-right: 17px;
+    height:100%;
+    list-style: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    visibility: visible;
+    overflow-y: scroll;
+}
+.info-category li{
+    margin:5px;
+    padding:5px;
+}
+.info-detail{
+    display: inline-block;
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.info-detail li{
+    display: inline-block;
+    min-width: 4em;
+    max-width: 30em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.info-detail .info-meta{
+    margin:2px;
+    padding: 5px;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 2px;
+    background-color: #444a50;
+    box-shadow: 0px 0px 3px 1px #343a40;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.info-detail .info-data{
+    margin:2px;
+    padding: 5px;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 2px;
+    background-color: #747a80;
+    box-shadow: 0px 0px 3px 1px #343a40;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.info-detail .info-data-text{
+    margin:2px;
+    padding: 5px;
+    min-height: 14px;
+    line-height: 14px;
+    border-radius: 2px;
+    background-color: #747a80;
+    box-shadow: 0px 0px 3px 1px #343a40;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

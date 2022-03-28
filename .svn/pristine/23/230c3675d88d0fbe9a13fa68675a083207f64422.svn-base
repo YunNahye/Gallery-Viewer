@@ -1,0 +1,248 @@
+/* addEventLitsener Polyfill */
+(function(win, doc){
+	if(win.addEventListener)return;
+
+	function docHijack(p){var old = doc[p];doc[p] = function(v){return addListen(old(v))}}
+	function addEvent(on, fn, self){
+		return (self = this).attachEvent('on' + on, function(e){
+			var e = e || win.event;
+			e.preventDefault  = e.preventDefault  || function(){e.returnValue = false}
+			e.stopPropagation = e.stopPropagation || function(){e.cancelBubble = true}
+			fn.call(self, e);
+		});
+	}
+	function addListen(obj, i){
+		if(i = obj.length)while(i--)obj[i].addEventListener = addEvent;
+		else obj.addEventListener = addEvent;
+		return obj;
+	}
+
+	addListen([doc, win]);
+	if('Element' in win)win.Element.prototype.addEventListener = addEvent;			//IE8
+	else{		//IE < 8
+		doc.attachEvent('onreadystatechange', function(){addListen(doc.all)});		//Make sure we also init at domReady
+		docHijack('getElementsByTagName');
+		docHijack('getElementById');
+		docHijack('createElement');
+		addListen(doc.all);	
+	}
+})(window, document);
+
+var menuData = [
+    'Organ',
+    'Age',
+	'Sex',
+    'Title',
+    'Content',
+    'Category',
+    'SubCategory',
+    'Date',
+    'Discussant\'spresentation',
+    'Floor diagnosis',
+    'Submitter\'s Presentation',
+	'Submitter'
+];
+var categoryData = [
+'Alimentary tract &amp; Associated organs',	
+'Bone &amp; Joint',
+'Breast',
+'CNS',
+'PNS &amp; Muscles',
+'Endocrine System',		
+'Female genital tract',				
+'Head &amp; Neck',
+'Hematopoietic and Lymphatic system',					
+'Intra-thoracic organs and Blood vessels',	
+'Skin',
+'Soft tissues',			
+'Urinary tract &amp; Male genital system'
+]
+/* addEventLitsener Polyfill */
+/*
+
+var tempSlideData = {
+    organ:'Lung',
+    age:64,
+    title:'Test...........',
+    content:'strategies, they’ve helped optimize the allocation of resources to fight the spread of infection. Algorithms have even detected preliminary signs of an outbreak well before it came to human pathologists’ attention.In a study back in 2014, investigators used statistical modeling to evaluate the testing and treatment of HIV in the U.K. and locate people living with the virus who weren’t aware of their disease status. The team found that — even without behavioral changes on the part of people living with HIV — their approach could reduce new infections by 5%.',
+    slideList:[
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        },
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        },
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        },
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        },
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        },
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        },
+        {
+            filename:'a',
+            ext:'svs',
+            thumb:'/imgs/thumbs/slide_1.JPG'
+        }
+    ],
+    fileList:[
+        {
+            filename:'a',
+            ext:'hwp'
+        },
+        {
+            filename:'a',
+            ext:'pdf'
+        },
+        {
+            filename:'a',
+            ext:'doc'
+        }
+    ],
+    replyList:[{
+        from:'anonymous',
+        text:'strategies, they’ve helped optimize the allocation of resources to fight the spread of infection. Algorithms have even detected preliminary signs of an outbreak well before it came to human pathologists’ attention.In a study back in 2014, investigators used statistical modeling to evaluate the testing and treatment of HIV in the U.K. and locate people living with the virus who weren’t aware of their disease status. The team found that — even without behavioral changes on the part of people living with HIV — their approach could reduce new infections by 5%.',
+        
+    },{
+        from:'anonymous',
+        text:'strategies, they’ve helped optimize the allocation of resources to fight the spread of infection. Algorithms have even detected preliminary signs of an outbreak well before it came to human pathologists’ attention.In a study back in 2014, investigators used statistical modeling to evaluate the testing and treatment of HIV in the U.K. and locate people living with the virus who weren’t aware of their disease status. The team found that — even without behavioral changes on the part of people living with HIV — their approach could reduce new infections by 5%.',
+        
+    },{
+        from:'anonymous',
+        text:'strategies, they’ve helped optimize the allocation of resources to fight the spread of infection. Algorithms have even detected preliminary signs of an outbreak well before it came to human pathologists’ attention.In a study back in 2014, investigators used statistical modeling to evaluate the testing and treatment of HIV in the U.K. and locate people living with the virus who weren’t aware of their disease status. The team found that — even without behavioral changes on the part of people living with HIV — their approach could reduce new infections by 5%.',
+        
+    },{
+        from:'anonymous',
+        text:'strategies, they’ve helped optimize the allocation of resources to fight the spread of infection. Algorithms have even detected preliminary signs of an outbreak well before it came to human pathologists’ attention.In a study back in 2014, investigators used statistical modeling to evaluate the testing and treatment of HIV in the U.K. and locate people living with the virus who weren’t aware of their disease status. The team found that — even without behavioral changes on the part of people living with HIV — their approach could reduce new infections by 5%.',
+        
+    },{
+        from:'anonymous',
+        text:'strategies, they’ve helped optimize the allocation of resources to fight the spread of infection. Algorithms have even detected preliminary signs of an outbreak well before it came to human pathologists’ attention.In a study back in 2014, investigators used statistical modeling to evaluate the testing and treatment of HIV in the U.K. and locate people living with the virus who weren’t aware of their disease status. The team found that — even without behavioral changes on the part of people living with HIV — their approach could reduce new infections by 5%.',
+        
+    }]
+}*/
+window.addEventListener('DOMContentLoaded',function(){
+    var width = window.clientWidth||document.documentElement.clientWidth||document.body.clientWidth;
+    var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+    var computedHeight = height-63;
+    var imageViewWidth = width-320;
+
+    
+    
+    var menuList = document.getElementById('menuList');
+    var menuUl = document.createElement('ul');
+    menuUl.setAttribute('class','master_ul');
+    menuData.map(function(v){
+        var menuLi = document.createElement('li');
+        menuLi.setAttribute('class','master_li');
+        var menuLiTitle = document.createElement('div');
+        menuLiTitle.setAttribute('class','master_title');
+        menuLiTitle.innerHTML=v
+        var menuSubUl = document.createElement('ul');
+         menuSubUl.setAttribute('class','submaster_ul');
+        var menuSubLi = document.createElement('li');
+            menuSubLi.setAttribute('class','submaster_li');
+        var submaster_box = document.createElement('div');
+            submaster_box.setAttribute('class','submaster_box')
+
+        menuSubLi.appendChild(submaster_box);
+        menuSubUl.appendChild(menuSubLi);
+        menuLi.appendChild(menuLiTitle);
+        menuLi.appendChild(menuSubUl);
+        menuUl.appendChild(menuLi);
+    });
+    menuList.appendChild(menuUl);
+	/*
+    var menuData = [
+    'Organ',
+    'Age',
+	'Sex',
+    'Title',
+    'Content',
+    'Category',
+    'SubCategory',
+    'Date',
+	'Discussant',
+	'Submitter'
+	];*/
+    
+    var submaster_boxList = document.querySelectorAll('.submaster_box');
+    Object.keys(monthlyInfo).map(function(v,i){
+        switch(v){
+            case 'strOrgan':
+                submaster_boxList[0].innerHTML=monthlyInfo[v];
+                break;
+            case 'strAge':
+                submaster_boxList[1].innerHTML=monthlyInfo[v];
+                break;
+            case 'strSex':
+                submaster_boxList[2].innerHTML=monthlyInfo[v];
+                break;
+            case 'strTitle':
+                submaster_boxList[3].innerHTML=monthlyInfo[v];
+                break;
+            case 'strContent':
+                submaster_boxList[4].innerHTML=monthlyInfo[v];
+                break;
+            case 'strCategory':
+                submaster_boxList[5].innerHTML= (categoryData[monthlyInfo[v]-1]===undefined?'':categoryData[monthlyInfo[v]-1]);
+                break;
+            case 'strSubCategory':
+                submaster_boxList[6].innerHTML=monthlyInfo[v];
+                break;
+            case 'strRegDate':
+                submaster_boxList[7].innerHTML=monthlyInfo[v];
+                break;
+            case 'strDiscussant':
+                submaster_boxList[8].innerHTML=monthlyInfo[v];
+                break;
+            case 'strFloor':
+                submaster_boxList[9].innerHTML=monthlyInfo[v];
+                break;
+            case 'strContent2':
+                submaster_boxList[10].innerHTML=monthlyInfo[v];
+                break;
+            case 'strSubmitter':
+                submaster_boxList[11].innerHTML=monthlyInfo[v];
+                break;
+
+        }
+        
+    });
+    
+    
+    var master_titleList = document.querySelectorAll('.master_title');
+    for(var i=0;i<master_titleList.length;i++){
+        master_titleList[i].addEventListener('click',function(){
+            
+            var subList = this.parentElement.lastElementChild;
+            if(getComputedStyle(subList)['display']==='block'){
+                subList.style.display='none'; 
+            }else{
+                for(var j=0;j<master_titleList.length;j++){
+                    master_titleList[j].parentElement.lastElementChild.style.display='none';
+                }
+                subList.style.display='block'; 
+            }
+            
+        });
+    }
+    
+});
